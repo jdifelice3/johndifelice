@@ -7,6 +7,7 @@ export declare const SubType: z.ZodEnum<["full-length", "one act", "ten minute",
 export declare const SubGenre: z.ZodEnum<["cyberpunk", "gothic horror", "historical fantasy"]>;
 export declare const WorkSchema: z.ZodObject<{
     title: z.ZodString;
+    fileName: z.ZodString;
     description: z.ZodString;
     form: z.ZodEnum<["short story", "novel", "novella", "novelette", "flash fiction", "serialized fiction", "play", "screen play"]>;
     wordCount: z.ZodNumber;
@@ -26,6 +27,7 @@ export declare const WorkSchema: z.ZodObject<{
     setting: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     title: string;
+    fileName: string;
     description: string;
     form: "short story" | "novel" | "novella" | "novelette" | "flash fiction" | "serialized fiction" | "play" | "screen play";
     wordCount: number;
@@ -45,6 +47,7 @@ export declare const WorkSchema: z.ZodObject<{
     setting?: string | undefined;
 }, {
     title: string;
+    fileName: string;
     description: string;
     form: "short story" | "novel" | "novella" | "novelette" | "flash fiction" | "serialized fiction" | "play" | "screen play";
     wordCount: number;

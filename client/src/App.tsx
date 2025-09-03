@@ -5,6 +5,8 @@ import TopMenu from './components/TopMenu';
 import Novels from './components/Novels';
 import ShortStories from './components/ShortStories';
 import Plays from './components/Plays';
+import Swr from './components/Swr';
+// import { ReactQuery } from './components/ReactQuery';
 import {
   Routes, Route
 } from 'react-router-dom';
@@ -30,6 +32,8 @@ function App() {
           <Route path="/novels" element={<Novels />} />
           <Route path="/shortstories" element={<ShortStories />} />   
           <Route path="/plays" element={<Plays />} />   
+          <Route path="/swr" element={<Swr />} />   
+          {/* <Route path="/reactquery" element={<ReactQuery />} />  */}
         </Routes>
       </div>
       <div className="footer"><Footer/>
@@ -40,3 +44,4 @@ function App() {
 }
 
 export default App;
+

@@ -2,7 +2,7 @@ const Header = () => {
 
     return (
         <div>
-            John DiFelice - Writer
+            John DiFelice - Fiction Writer
         </div>
     )
 }

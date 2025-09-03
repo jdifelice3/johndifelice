@@ -32,6 +32,7 @@ export const SubGenre = z.enum(["cyberpunk", "gothic horror", "historical fantas
 
 export const WorkSchema = z.object({
     title: z.string(),
+    fileName: z.string(),
     description: z.string(),
     form: Form,
     wordCount: z.number(),

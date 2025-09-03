@@ -1,26 +1,23 @@
 import { useEffect, useState } from 'react';
 import type { Work } from '@johndifelice/types';
-//import { fetchWorks } from '../services/fetchWorks';
+import { fetchWorksByForm } from '../services/worksService';
 
 const Novels = () => {
     const [novels, setNovels] = useState<Work[]>([]);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        console.log('in useEffect');
-        const ac = new AbortController();
-
         (async () => {
             try {
-                const res = await fetch('/api/works', { signal: ac.signal });
-                if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
-                setNovels(await res.json());
-                console.log('novels', JSON.stringify(novels));
+                const data: Work[] = await fetchWorksByForm('novel');
+                setNovels(data);
             } catch (err) {
-                if ((err as any)?.name !== 'AbortError') setError(String(err));
+                if ((err as any)?.name !== 'AbortError') {
+                    setError(String(err));
+                    console.log(error);
+                }
             }
         })();
-        return () => ac.abort();
     }, []);
 
     return (
