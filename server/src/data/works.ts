@@ -13,7 +13,7 @@ export const Works = z.array(WorkSchema).parse([
         wordCount: 90000,
         pageCount: 230,
         genre: Genre.enum.literary,
-        fileName: '',
+        fileName: 'Blind Study.pdf',
         manuscriptIsVisible: false
     },
     {
