@@ -11,6 +11,7 @@ export default function TopMenu() {
   //const open = Boolean(anchorEl);
   
   return (
+    
     <div>
       <Stack direction="row" spacing={2} justifyContent="center">
       <Button
@@ -43,20 +44,3 @@ export default function TopMenu() {
     </div>
   );
 }
-
-
-{/* <Menu
-        id="basic-menu"
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        slotProps={{
-          list: {
-            'aria-labelledby': 'basic-button',
-          },
-        }}
-      >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
-      </Menu> */}

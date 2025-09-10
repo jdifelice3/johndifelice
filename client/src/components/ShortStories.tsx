@@ -3,10 +3,12 @@ import React, { useEffect, useState } from 'react';
 import type { Work } from '../types';
 import { fetchWorksByForm } from '../services/worksService';
 import PdfViewer from './PdfViewer';
+import { useToggleVisibility } from "../hooks/useToggleVisibility";
 
 const ShortStories = () => {
     const [shortStories, setShortStories] = useState<Work[]>([]);
     const [error, setError] = useState<string | null>(null);
+    const { handleToggle } = useToggleVisibility(setShortStories);
 
     useEffect(() => {
         (async () => {
@@ -21,17 +23,6 @@ const ShortStories = () => {
         })();
     }, []);
 
-    const handleOnClick = (event: React.MouseEvent<HTMLButtonElement>, id: string) => {
-        event.stopPropagation();
-
-        const idx = shortStories.findIndex(w => w.id === id);
-        if (idx === -1) return;
-
-        const next = [...shortStories]; // new array
-        next[idx] = { ...next[idx], manuscriptIsVisible: !next[idx].manuscriptIsVisible }; // new object
-        setShortStories(next); // new reference -> re-render
-    };
-
     return (
         <>
         {shortStories.map((work, index) => ( 
@@ -39,8 +30,16 @@ const ShortStories = () => {
                 <div className="workTitle">{work.title}</div>
                 <div>{work.description}</div>
                 {work.fileName.length > 0 &&
-                    <button id={'btn' + index} key={index} onClick={ (e) => handleOnClick(e, work.id)}>
-                        {work.manuscriptIsVisible ? "Hide Short Story" : "View Short Story"}
+                    <button
+                        id={"btn" + index}
+                        type="button"
+                        aria-expanded={work.manuscriptIsVisible}
+                        aria-controls={`manuscript-${work.id}`}
+                        onClick={(e) => handleToggle(e, work.id)} // Option A: pass id at call time
+                                                                // Option B: bind once per render (nice & tidy)
+                                                                // onClick={getToggleHandler(work.id)}
+                    >
+                        {work.manuscriptIsVisible ? "Hide" : "View"}
                     </button>
                 }
                 <div>&nbsp;</div>

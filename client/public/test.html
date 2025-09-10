@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Fixed Top Nav · Sticky Footer · Flexible Content</title>
+  <style>
+    /* ===== Base / Reset-ish ===== */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height: 1.5;
+      color: #111;
+      background: #f7f7f8;
+
+      /* Layout engine */
+      display: flex;
+      flex-direction: column;
+      min-height: 100dvh; /* account for mobile UI chrome */
+    }
+
+    :root {
+      --header-height: 64px;
+      --maxw: 1100px;
+      --pad: 16px;
+      --border: 1px solid #e6e6e9;
+      --surface: #fff;
+    }
+
+    /* ===== Fixed Top Nav ===== */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--header-height);
+      background: var(--surface);
+      border-bottom: var(--border);
+      z-index: 1000;
+    }
+    .nav {
+      max-width: var(--maxw);
+      height: 100%;
+      margin: 0 auto;
+      padding: 0 var(--pad);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      justify-content: space-between;
+    }
+    .brand { font-weight: 700; }
+    .nav a {
+      text-decoration: none;
+      color: #222;
+      padding: 8px 10px;
+      border-radius: 8px;
+    }
+    .nav a:hover { background: #f0f0f2; }
+
+    /* ===== Main (flexible, infinite growth) ===== */
+    main {
+      /* Because header is fixed (removed from flow), offset content */
+      padding-top: calc(var(--header-height) + 20px);
+      padding-bottom: 24px;
+      flex: 1;                     /* <- makes footer stick to bottom when content is short */
+    }
+    .container {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 0 var(--pad);
+    }
+    .card {
+      background: var(--surface);
+      border: var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 1px 0 rgba(0,0,0,0.04);
+    }
+
+    /* ===== Footer (sticks to bottom) ===== */
+    footer {
+      background: var(--surface);
+      border-top: var(--border);
+    }
+    .footer-inner {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 14px var(--pad);
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    /* Optional: nicer dark mode */
+    @media (prefers-color-scheme: dark) {
+      body { color: #eaeaea; background: #0b0b0c; }
+      header, .card, footer { background: #121214; border-color: #202025; }
+      .nav a { color: #eaeaea; }
+      .nav a:hover { background: #1a1a1b; }
+      .footer-inner { color: #b9b9bd; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Fixed top navigation -->
+  <header>
+    <nav class="nav" aria-label="Primary">
+      <div class="brand">MySite</div>
+      <div>
+        <a href="#">Home</a>
+        <a href="#">Docs</a>
+        <a href="#">Blog</a>
+        <a href="#">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Expanding content section -->
+  <main>
+    <div class="container">
+      <h1>Welcome</h1>
+      <p>This middle section grows as much as you need. The footer will remain pinned to the bottom when there isn’t much content, and will move off-screen (with normal scrolling) when there’s a lot.</p>
+
+      <div class="card">
+        <h2>Demo Content</h2>
+        <p>Drop your app’s content here. To test, copy this paragraph a bunch of times or add long lists/tables. The header stays fixed; the main gets padded at the top so nothing hides under it.</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer pinned to the bottom when content is short -->
+  <footer>
+    <div class="footer-inner">
+      <span>© 2025 MySite</span>
+      <span><a href="#" style="text-decoration: none;">Privacy</a> · <a href="#" style="text-decoration: none;">Terms</a></span>
+    </div>
+  </footer>
+</body>
+</html>

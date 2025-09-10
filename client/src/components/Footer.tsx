@@ -1,6 +1,11 @@
 const Footer = () => {
     return (
-        <h3>Componentized Footer</h3>
+        <footer>
+            <div className="footer-inner">
+            <span>© 2025 John DiFelice</span>
+            <span><a href="#" >Privacy</a> · <a href="#" >Terms</a></span>
+            </div>
+        </footer>
     )
 }
 
