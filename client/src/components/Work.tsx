@@ -1,31 +1,46 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 //import type { Work } from '@johndifelice/types';
 import type { Work } from '../types';
+import { Form } from '../types';
 import { fetchWorksByForm } from '../services/worksService';
 import PdfViewer from './PdfViewer';
 import { useToggleVisibility } from "../hooks/useToggleVisibility";
 
-const Plays = () => {
-    const [plays, setPlays] = useState<Work[]>([]);
+const WorkComponent = () => {
+    const [works, setWorks] = useState<Work[]>([]);
     const [error, setError] = useState<string | null>(null);
-    const { handleToggle } = useToggleVisibility(setPlays);
+
+    const { handleToggle } = useToggleVisibility(setWorks);
+
+    // Hooks at top level
+    let { writingForm } = useParams<{ writingForm?: string }>();
+    writingForm = Form.parse(writingForm);
 
     useEffect(() => {
         (async () => {
-            try {
-                const data: Work[] = await fetchWorksByForm('play');
-                console.log('data', data);
-                setPlays(data);
-            } catch (err) {
-                if ((err as any)?.name !== 'AbortError') setError(String(err));
-                console.log(error);
+        try {
+            Form.parse(writingForm);
+            if (!writingForm){
+                const errorMessage = "A form of writing must be provided";
+                console.log(errorMessage);
+                setError(errorMessage);
+            } else {
+                const data = await fetchWorksByForm(writingForm);
+                setWorks(data);
             }
+        } catch (err) {
+            if ((err as any)?.name !== "AbortError") setError(String(err));
+            console.log(err);
+        }
         })();
-    }, []);
+    }, [writingForm]); // reruns if the URL param changes
+
+    if (error) return <div role="alert">{error}</div>;
 
     return (
         <>
-        {plays.map((work, index) => ( 
+        {works.map((work, index) => ( 
             <React.Fragment key={index ?? work.title}>
                 <div className="workTitle">{work.title}</div>
                 <div>{work.description}</div>
@@ -39,7 +54,7 @@ const Plays = () => {
                                                                   // Option B: bind once per render (nice & tidy)
                                                                   // onClick={getToggleHandler(work.id)}
                     >
-                        {work.manuscriptIsVisible ? "Hide" : "View"}
+                        {work.manuscriptIsVisible ? "Hide" : "Read"}
                     </button>
                 }
                 {work.manuscriptIsVisible && (
@@ -55,4 +70,4 @@ const Plays = () => {
     )
 }
 
-export default Plays;
+export default WorkComponent;

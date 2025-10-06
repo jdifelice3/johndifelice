@@ -13,13 +13,13 @@ export const Works = z.array(WorkSchema).parse([
         wordCount: 90000,
         pageCount: 242,
         genre: Genre.enum.literary,
-        fileName: 'Blind Study.pdf',
+        fileName: '',
         manuscriptIsVisible: false
     },
     {
         id: '2',
         title: 'Traffic Girl Wars (prologue)',
-        description: 'Traffic Girl Wars follows disgraced traffic reporter Hugh Butters as he tries to reclaim his life after an on-air meltdown turns him into a pariah. But when a stunning new traffic girl named Eustacia Sharp rises to viral fame, Hugh becomes obsessed—not just with who she is, but with what she might be. As strange events ripple through Philadelphia, from prophetic toast sightings to fracking-induced tremors, Hugh spirals into a surreal investigation that blurs the lines between journalism and myth. A satirical and apocalyptic fable about media, masculinity, and the return of the feminine divine, Traffic Girl Wars is a novel about the end of the world—and the woman who may have come to end it.',
+        description: 'Traffic Girl Wars follows disgraced traffic reporter, Hugh Butters, as he tries to reclaim his life after an on-air meltdown turns him into a pariah. When a stunning new traffic girl named Eustacia Sharp rises to viral fame, Hugh becomes obsessed—not just with who she is, but with what she might be. As strange events ripple through Philadelphia, from prophetic toast sightings to fracking-induced tremors, Hugh spirals into a surreal investigation that blurs the lines between journalism and myth. A satirical and apocalyptic fable about media, masculinity, and the return of the feminine divine, Traffic Girl Wars is a novel about the end of the world—and the woman who may have come to end it.',
         form: Form.Enum.novel,
         wordCount: 60000,
         pageCount: 175,
@@ -53,12 +53,12 @@ export const Works = z.array(WorkSchema).parse([
     {
         id: '5',
         title: 'Half the Rent',
-        description: 'Half the Rent is a comedy about T.J., a disillusioned bookstore employee whose life takes an unexpected turn when he moves into a luxury apartment—shared with a lingerie modeling website. As he navigates a toxic workplace, a spiraling moral dilemma, and his feelings for a coworker, T.J. must decide what he’s willing to compromise for comfort, connection, and the illusion of success. A fast-paced exploration of modern masculinity, ambition, and the price of selling out.',
+        description: 'Half the Rent is a comedy about T.J., a disillusioned bookstore employee whose life takes an unexpected turn when he moves into a luxury apartment—shared with a company that maintains a pornographic website. As he navigates a toxic workplace, a spiraling moral dilemma, and his feelings for a coworker, T.J. must decide what he’s willing to compromise for comfort, connection, and the illusion of success. A fast-paced exploration of modern masculinity, ambition, and the price of selling out.',
         form: Form.Enum.play,
         wordCount: 0,
         pageCount: 0,
         genre: Genre.enum.literary,
-        fileName: '',
+        fileName: 'Half the Rent_v7.pdf',
         manuscriptIsVisible: false
     },
     {
@@ -102,7 +102,7 @@ export const Works = z.array(WorkSchema).parse([
         wordCount: 0,
         pageCount: 0,
         genre: Genre.enum.literary,
-        fileName: '',
+        fileName: 'You Me and Dr Sperm.pdf',
         manuscriptIsVisible: false
     },
     {
@@ -119,7 +119,7 @@ export const Works = z.array(WorkSchema).parse([
     {
         id: '11',
         title: 'Spread My Ashes Like We Planned',
-        description: 'Johnny Ballgame wants to give up drinking and save himself, but his closest friends won\'t let him. After his death, those same friends cling to tradition, carrying his ashes on their annual canoe trip and honoring his “wishes” in ways that reveal more about their own denial than about Johnny\'s life. At once tragic and darkly comic, the story explores how loyalty, habit, and fear can stand in the way of true change.',
+        description: 'Johnny Ballgame wants to give up drinking and save himself, but his closest friends won\'t let him. After his death, those same friends cling to tradition, carrying his ashes on their annual canoe trip and honoring his “wishes” in ways that reveal more about their own denial than about Johnny\'s life. Tragic and morbidly comic, the story explores how loyalty, habit, and fear can stand in the way of true change.',
         form: Form.Enum['short story'],
         wordCount: 0,
         pageCount: 0,
@@ -135,24 +135,13 @@ export const Works = z.array(WorkSchema).parse([
         wordCount: 0,
         pageCount: 0,
         genre: Genre.enum.literary,
-        fileName: 'Christmas Cake.pdf',
-        manuscriptIsVisible: false
-    },
-    {
-        id: '13',
-        title: 'Lure of the Unattainable',
-        description: ' ',
-        form: Form.Enum['short story'],
-        wordCount: 0,
-        pageCount: 0,
-        genre: Genre.enum.literary,
         fileName: '',
         manuscriptIsVisible: false
     },
     { 
         id: '14',
         title: 'Are You Dead, Father?',
-        description: 'When a father dies, grief does not rest quietly. Kelly and her brother Tommy confront loss in radically different ways—she through memory, he through technology. But when Tommy reveals a device that may contain their father’s very mind, the boundary between mourning and obsession blurs. A haunting exploration of family, neglect, and the unsettling power of resurrection through data.',
+        description: 'When a father dies, grief does not rest quietly. Kelly and her brother Tommy confront loss in radically different ways—she through memory, he through technology. When Tommy reveals a device that may contain their father’s consciousness and all his memories, the boundary between mourning and obsession blurs. A haunting exploration of family, neglect, and the unsettling power of resurrection through data.',
         form: Form.Enum['short story'],
         wordCount: 0,
         pageCount: 0,
@@ -163,7 +152,7 @@ export const Works = z.array(WorkSchema).parse([
     {
         id: '15',
         title: 'Does the World Make Sense?',
-        description: 'A darkly comic meditation on guilt, lust, and absurd domesticity, Does the World Make Sense? follows Ernie Pendleton, a meek office worker trapped in a punishing marriage to a paranoid wife who douses him with ice water each morning for imagined affairs. Though Ernie has never cheated, he privately obsesses over every woman he sees—until a pair of blurry reading glasses seem to cure him of his lust. But when a terror attack literally covers him in another woman’s remains, Ernie is forced to confront the twisted intersection of fidelity, punishment, and forgiveness. Hilarious, tragic, and uncomfortably intimate, the story asks whether penance can ever be enough in a world that defies moral logic.',
+        description: 'A darkly comic meditation on guilt, lust, and absurd domesticity, Does the World Make Sense? follows Ernie Pendleton, a meek office worker trapped in a punishing marriage to a paranoid wife who douses him with ice water each morning for imagined affairs. She tells him that he\'d better not come home with another woman on him. Though Ernie has never cheated, he privately obsesses over every woman he sees—until a pair of blurry reading glasses seem to cure him of his lust. When a terror attack literally covers him with the female terrorist, Ernie is forced to confront the twisted intersection of fidelity, punishment, and forgiveness. Hilarious, tragic, and uncomfortably intimate, the story asks whether penance can ever be enough in a world that defies moral logic.',
         form: Form.Enum['short story'],
         wordCount: 0,
         pageCount: 0,
@@ -174,23 +163,12 @@ export const Works = z.array(WorkSchema).parse([
     {
         id: '16',
         title: 'The Perils of Believing  in Santa Claus',
-        description: 'Perils of Believing in Santa Claus explores a fractured marriage, parental disillusionment, and the fragile balance between innocence and truth. Set during a time of Christmas rituals, the story follows a father numbed by guilt and bourbon, a mother who sees more than she admits, and a son whose quiet empathy outpaces his parents’ understanding. A meditation on faith, betrayal, and the unseen intelligence of a child, it asks what we choose to believe—and what it costs us when we stop.',
+        description: 'Perils of Believing in Santa Claus explores a fractured marriage, parental disillusionment, and the fragile balance between innocence and truth. Set during a time of Christmas rituals, the story follows a father numbed by guilt and bourbon, a mother who sees more than she admits, and a son whose quiet empathy outpaces his parents’ understanding. A meditation on faith, betrayal, and the unseen intelligence of a child, it asks what we choose to believe, and what it costs us when we stop.',
         form: Form.Enum['short story'],
         wordCount: 0,
         pageCount: 0,
         genre: Genre.enum.literary,
         fileName: 'Perils.pdf',
-        manuscriptIsVisible: false
-    },
-    {
-        id: '17',
-        title: 'Sing For the Lonely',
-        description: ' ',
-        form: Form.Enum['short story'],
-        wordCount: 0,
-        pageCount: 0,
-        genre: Genre.enum.literary,
-        fileName: '',
         manuscriptIsVisible: false
     }
 ]);

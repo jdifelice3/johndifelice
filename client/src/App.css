@@ -1,21 +1,36 @@
 /* Reset / base */
 *, *::before, *::after { box-sizing: border-box; }
+
 :root {
+  /* Layout variables */
   --header-height: 64px;
   --maxw: 1100px;
   --pad: 16px;
   --border: 1px solid #e6e6e9;
   --surface: #fff;
+
+  /* Hints */
+  color-scheme: light dark;
+
+  /* Rendering */
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Let the page grow naturally */
-html, body, #root {
-  min-height: 100%;
-}
+html, body, #root { min-height: 100%; }
+
 body {
   margin: 0;
-  font-family: 'Helvetica', 'Open Sans', 'Lato', 'Roboto';
+
+  /* Typography */
+  font-family: 'Helvetica', 'Open Sans', 'Lato', 'Roboto', system-ui, Avenir, sans-serif;
   line-height: 1.5;
+  font-weight: 400;
+
+  /* Light default */
   color: #111;
   background: #f7f7f8;
 }
@@ -50,7 +65,7 @@ body {
 .main {
   padding-top: calc(var(--header-height) + 20px);
   padding-bottom: 24px;
-  flex: 1;                /* key: pushes footer to bottom on short pages */
+  flex: 1; /* key: pushes footer to bottom on short pages */
 }
 .container {
   /* max-width: var(--maxw); */
@@ -82,29 +97,65 @@ body {
   font-size: 0.95rem; color: #555;
 }
 
-.brand {
-    font-size: xx-large;
+/* Type & utility */
+.brand { font-size: xx-large; }
+.workTitle { font-size: large; font-weight: bold; color: #81A9CB; }
+.sectionTitle { font-weight: bold; padding-bottom: 2%; }
+
+.logo {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  background-color: black;
+  left: 0;
+  top: 0;
+  padding: 3px;
 }
 
-.workTitle {
-  font-size: large;
-  font-weight: bold;
-  color: #81A9CB;
+/* Buttons */
+button {
+  border: 1px solid transparent;   /* no border by default (light mode) */
+  background-color: #1a1a1a;
+  color: inherit;
+  border-radius: 8px;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  outline: none;                    /* remove always-on outline */
+  font-size:small;
+}
+button:hover { border-color: #646cff; }
+button:focus,
+button:focus-visible { outline: 4px auto -webkit-focus-ring-color; } /* show only on focus */
+
+img {
+  height: 300px;
+  width: auto;
 }
 
-.sectionTitle {
-  font-weight: bold;
-  padding-bottom: 2%;
+.p-center {
+  text-align: center;
 }
 
-/* Optional: remove unexpected bottom gap from last element margins */
-.container > :last-child { margin-bottom: 0; }
-
-/* Dark mode (optional) */
+/* Dark mode */
 @media (prefers-color-scheme: dark) {
   body { color: #eaeaea; background: #0b0b0c; }
   .header, .card, .footer { background: #121214; border-color: #202025; }
   .nav a { color: #eaeaea; }
   .nav a:hover { background: #1a1a1b; }
   .footer-inner { color: #b9b9bd; }
+
+  /* Gray border for buttons in dark mode */
+  button {
+    border-color: #999;
+  }
+}
+
+/* Light mode tweaks */
+@media (prefers-color-scheme: light) {
+  a:hover { color: #747bff; }
+  button { background-color: #f9f9f9; }
 }

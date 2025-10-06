@@ -1,132 +1,66 @@
 import React from "react";
 import "./App.css"; // optional if you want to move CSS out
 import Header from './components/Header';
-import Footer from './components/Footer';
-import TopMenu from './components/TopMenu';
-import Novels from './components/Novels';
-import ShortStories from './components/ShortStories';
-import Plays from './components/Plays';
+import WorkComponent from './components/Work';
+import About from './components/About';
 import {
   Routes, Route
 } from 'react-router-dom';
-
-const About = () => {
-  return (
-      <>
-        <h3 style={{textAlign: "center"}}>About</h3><p>Lorem ipsum odor amet, consectetuer adipiscing elit. Ridiculus sit nisl laoreet facilisis aliquet. Potenti dignissim litora eget montes rhoncus sapien neque urna. Cursus libero sapien integer magnis ligula lobortis quam ut.</p>
-      </>
-  )
-}
+import { ErrorBoundary } from "react-error-boundary";
+import Terms from './components/Terms';
+import Privacy from './components/PrivacyPolicy';
+import logo from '../public/white-home-icon-vector-7151383.png';
+import PrivacyPolicy from "./components/PrivacyPolicy";
 
 const App: React.FC = () => {
   return (
+    <ErrorBoundary
+      FallbackComponent={ErrorFallback}
+      onReset={() => {
+        console.log('Error boundary reset!');
+      }}
+    >
     <div className="app">
-      {/* Fixed Top Nav */}
       <header className="header">
         <nav className="nav" aria-label="Primary">
+          <div><a href='/'><img className='logo' src={logo}/></a></div>
           <div className="brand">John DiFelice - Author</div>
-          {/* <div>
-            <a href="#">Home</a>
-            <a href="#">Docs</a>
-            <a href="#">Blog</a>
-            <a href="#">Contact</a>
-          </div> */}
           <Header/>
         </nav>
       </header>
 
-      {/* Expanding content */}
       <main className="main">
         <div className="container">
           <Routes>
             <Route index element={<About />} />
-            <Route path="/novels" element={<Novels />} />
-            <Route path="/shortstories" element={<ShortStories />} />   
-            <Route path="/plays" element={<Plays />} />   
+            {/* <Route path="/novels" element={<Novels />} />
+            <Route path="/shortstories" element={<ShortStories />} />    */}
+            <Route path="/works/:writingForm" element={<WorkComponent />} />   
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/privacy" element={<PrivacyPolicy />} />
           </Routes>
-          {/* <h1>Welcome</h1>
-          <p>
-            This middle section grows as much as you need. The footer will remain
-            pinned to the bottom when there isn’t much content, and will move
-            off-screen (with normal scrolling) when there’s a lot.
-          </p>
-
-          <div className="card">
-            <h2>Demo Content</h2>
-            <p>
-              Drop your app’s content here. To test, copy this paragraph a bunch
-              of times or add long lists/tables. The header stays fixed; the main
-              gets padded at the top so nothing hides under it.
-            </p>
-          </div>
-          
-          <div className="card">
-            <h2>Demo Content</h2>
-            <p>
-              Drop your app’s content here. To test, copy this paragraph a bunch
-              of times or add long lists/tables. The header stays fixed; the main
-              gets padded at the top so nothing hides under it.
-            </p>
-          </div>
-          
-          <div className="card">
-            <h2>Demo Content</h2>
-            <p>
-              Drop your app’s content here. To test, copy this paragraph a bunch
-              of times or add long lists/tables. The header stays fixed; the main
-              gets padded at the top so nothing hides under it.
-            </p>
-          </div>
-          
-          <div className="card">
-            <h2>Demo Content</h2>
-            <p>
-              Drop your app’s content here. To test, copy this paragraph a bunch
-              of times or add long lists/tables. The header stays fixed; the main
-              gets padded at the top so nothing hides under it.
-            </p>
-          </div>
-          
-          <div className="card">
-            <h2>Demo Content</h2>
-            <p>
-              Drop your app’s content here. To test, copy this paragraph a bunch
-              of times or add long lists/tables. The header stays fixed; the main
-              gets padded at the top so nothing hides under it.
-            </p>
-          </div>
-          
-          <div className="card">
-            <h2>Demo Content</h2>
-            <p>
-              Drop your app’s content here. To test, copy this paragraph a bunch
-              of times or add long lists/tables. The header stays fixed; the main
-              gets padded at the top so nothing hides under it.
-            </p>
-          </div>
-          
-          <div className="card">
-            <h2>Demo Content</h2>
-            <p>
-              Drop your app’s content here. To test, copy this paragraph a bunch
-              of times or add long lists/tables. The header stays fixed; the main
-              gets padded at the top so nothing hides under it.
-            </p>
-          </div> */}
         </div>
       </main>
 
-      {/* Footer pinned to bottom */}
       <footer className="footer">
         <div className="footer-inner">
-          <span>© 2025 John DiFelice</span>
+          <span>© 2025 John DiFelice. All rights reserved.</span>
           <span>
-            <a href="#">Privacy</a> · <a href="#">Terms</a>
+            <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a>
           </span>
         </div>
       </footer>
     </div>
+    </ErrorBoundary>
   );
 };
+
+const ErrorFallback: React.FC<{ error: Error; resetErrorBoundary: () => void }> = ({ error, resetErrorBoundary }) => (
+  <div role="alert">
+    <p>Something went wrong:</p>
+    <pre>{error.message}</pre>
+    <button onClick={resetErrorBoundary}>Try again</button>
+  </div>
+);
 
 export default App;
