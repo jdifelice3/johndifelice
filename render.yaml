@@ -1,29 +1,23 @@
 services:
-  # Node API
   - type: web
     name: myapp-server
     runtime: node
     rootDir: server
     buildCommand: |
       npm install
-      npm ci
       npm run build || echo "no server build step"
-    startCommand: node index.ts # or: npm start
+    startCommand: node server.js
     envVars:
       - key: NODE_ENV
         value: production
-      # - key: DATABASE_URL
-      #   sync: false
     healthCheckPath: /health
 
-  # React client (static site)
   - type: web
     name: myapp-client
     runtime: static
     rootDir: client
     buildCommand: |
       npm install
-      npm ci
       npm run build
     staticPublishPath: ./build
     routes:
