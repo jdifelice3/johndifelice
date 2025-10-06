@@ -7,7 +7,7 @@ services:
     buildCommand: |
       npm ci
       npm run build || echo "no server build step"
-    startCommand: node server.js # or: npm start
+    startCommand: node index.ts # or: npm start
     envVars:
       - key: NODE_ENV
         value: production
