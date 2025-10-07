@@ -1,22 +1,14 @@
-services:
-  - type: web
-    name: myapp-server
-    runtime: node
-    rootDir: server
-    buildCommand: |
-      node -v
-      npm -v
-      npm ci --include=dev
-      ls -la node_modules/@types || true
-      npx tsc --version
-      npm run build
-    startCommand: npm start
-    envVars:
-      - key: NODE_ENV
-        value: production
-      # If you prefer not to use --include=dev, set:
-      # - key: NPM_CONFIG_PRODUCTION
-      #   value: "false"
+- type: web
+  name: myapp-server
+  runtime: node
+  rootDir: server
+  buildCommand: |
+    # install only runtime deps (no dev needed since we’re not compiling here)
+    npm ci --omit=dev
+  startCommand: node dist/index.js
+  envVars:
+    - key: NODE_ENV
+      value: production
   - type: web
     name: myapp-client
     runtime: static
