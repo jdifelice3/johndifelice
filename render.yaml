@@ -1,5 +1,5 @@
 - type: web
-  name: myapp-server
+  name: difelice-server
   runtime: node
   rootDir: server
   buildCommand: |
@@ -10,7 +10,7 @@
     - key: NODE_ENV
       value: production
 - type: web
-  name: myapp-client
+  name: difelice-client
   runtime: static
   rootDir: client
   buildCommand: |
