@@ -4,16 +4,19 @@ services:
     runtime: node
     rootDir: server
     buildCommand: |
-      # Install dev deps so TypeScript/@types are present
+      node -v
+      npm -v
       npm ci --include=dev
-      # Compile TS -> JS into dist/
+      ls -la node_modules/@types || true
+      npx tsc --version
       npm run build
-    # Run the compiled JS (matches your package.json "start")
     startCommand: npm start
     envVars:
       - key: NODE_ENV
         value: production
-
+      # If you prefer not to use --include=dev, set:
+      # - key: NPM_CONFIG_PRODUCTION
+      #   value: "false"
   - type: web
     name: myapp-client
     runtime: static
